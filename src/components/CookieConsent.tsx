@@ -56,13 +56,13 @@ export const CookieConsent: React.FC = () => {
                   <div className="flex gap-3">
                       <button 
                         onClick={handleAccept}
-                        className="flex-1 bg-brand-500 hover:bg-brand-400 text-black font-bold py-2.5 px-4 rounded-lg text-xs uppercase tracking-widest transition-colors shadow-[0_0_15px_rgba(212,175,55,0.3)]"
+                        className="flex-1 cursor-pointer bg-brand-500 hover:bg-brand-400 text-black font-bold py-2.5 px-4 rounded-lg text-xs uppercase tracking-widest transition-colors shadow-[0_0_15px_rgba(212,175,55,0.3)]"
                       >
                         Akzeptieren
                       </button>
                       <button 
                         onClick={handleDecline}
-                        className="flex-1 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white font-bold py-2.5 px-4 rounded-lg text-xs uppercase tracking-widest transition-colors"
+                        className="flex-1 cursor-pointer bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white font-bold py-2.5 px-4 rounded-lg text-xs uppercase tracking-widest transition-colors"
                       >
                         Ablehnen
                       </button>
