@@ -35,8 +35,8 @@ export const FAQ: React.FC = () => {
 
   return (
     <section id="faq" className="py-24 bg-neutral-100 dark:bg-neutral-950 font-['Host_Grotesk'] transition-colors duration-500 relative overflow-hidden">
-      {/* Background Decoration */}
-      <div className="absolute right-0 top-0 opacity-5 pointer-events-none">
+      {/* Background Decoration - Hidden on Mobile */}
+      <div className="hidden md:block absolute right-0 top-0 opacity-5 pointer-events-none">
         <HelpCircle size={400} className="text-brand-500" />
       </div>
 
@@ -51,16 +51,16 @@ export const FAQ: React.FC = () => {
           {faqs.map((item, idx) => (
             <div 
                 key={idx} 
-                className="bg-white dark:bg-[#121212] border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden transition-all hover:border-brand-400 dark:hover:border-brand-600/50 shadow-sm hover:shadow-md"
+                className="bg-white dark:bg-[#121212] border border-neutral-200 dark:border-neutral-800 rounded-2xl overflow-hidden shadow-xs"
             >
               <button
                 onClick={() => toggleAccordion(idx)}
-                className="w-full px-8 py-6 flex items-center justify-between text-left focus:outline-none"
+                className="w-full px-6 py-5 md:px-8 md:py-6 flex items-center justify-between text-left focus:outline-none touch-manipulation"
               >
-                <span className={`text-lg md:text-xl font-bold transition-colors duration-300 ${activeIndex === idx ? 'text-brand-600 dark:text-brand-400' : 'text-neutral-800 dark:text-neutral-200'}`}>
+                <span className={`text-base md:text-xl font-bold transition-colors duration-300 ${activeIndex === idx ? 'text-brand-600 dark:text-brand-400' : 'text-neutral-800 dark:text-neutral-200'}`}>
                     {item.question}
                 </span>
-                <span className={`ml-4 p-2 rounded-full bg-neutral-100 dark:bg-neutral-800 transition-all duration-300 ${activeIndex === idx ? 'rotate-180 bg-brand-100 dark:bg-brand-900/30 text-brand-600' : 'text-neutral-500'}`}>
+                <span className={`ml-4 p-2 rounded-full bg-neutral-100 dark:bg-neutral-800 transition-all duration-300 shrink-0 ${activeIndex === idx ? 'rotate-180 bg-brand-100 dark:bg-brand-900/30 text-brand-600' : 'text-neutral-500'}`}>
                     {activeIndex === idx ? <Minus size={20} /> : <Plus size={20} />}
                 </span>
               </button>
@@ -71,10 +71,10 @@ export const FAQ: React.FC = () => {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.2, ease: "easeOut" }} // Faster transition for mobile
                     className="overflow-hidden"
                   >
-                    <div className="px-8 pb-8 pt-2 text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                    <div className="px-6 pb-6 pt-0 md:px-8 md:pb-8 md:pt-2 text-neutral-600 dark:text-neutral-400 leading-relaxed">
                       {item.answer}
                     </div>
                   </motion.div>

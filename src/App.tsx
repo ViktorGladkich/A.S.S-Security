@@ -1,20 +1,29 @@
 
-import { useState } from 'react';
+import { useState, Suspense, lazy } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GlobalStyles } from './components/GlobalStyles';
 import { Preloader } from './components/Preloader';
-import { Hero } from './components/Hero';
-import { Services } from './components/Services';
-import { Timeline } from './components/Timeline';
-import { StatsChart } from './components/StatsChart';
-import { FAQ } from './components/FAQ';
-import { ContactSection } from './components/ContactSection';
 import { Menu } from './components/Menu';
-import { Gallery } from './components/Gallery';
-import { Team } from './components/Team';
-import { About } from './components/About';
+import { Hero } from './components/Hero';
 import { CookieConsent } from './components/CookieConsent';
-import { ShieldCheck, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { ShieldCheck, Facebook, Twitter, Linkedin, Instagram, Loader2 } from 'lucide-react';
+
+// Lazy load heavy components
+const Gallery = lazy(() => import('./components/Gallery').then(module => ({ default: module.Gallery })));
+const Services = lazy(() => import('./components/Services').then(module => ({ default: module.Services })));
+const About = lazy(() => import('./components/About').then(module => ({ default: module.About })));
+const Timeline = lazy(() => import('./components/Timeline').then(module => ({ default: module.Timeline })));
+const Team = lazy(() => import('./components/Team').then(module => ({ default: module.Team })));
+const StatsChart = lazy(() => import('./components/StatsChart').then(module => ({ default: module.StatsChart })));
+const FAQ = lazy(() => import('./components/FAQ').then(module => ({ default: module.FAQ })));
+const ContactSection = lazy(() => import('./components/ContactSection').then(module => ({ default: module.ContactSection })));
+
+// Loading fallback for sections
+const SectionLoader = () => (
+  <div className="w-full h-[50vh] flex items-center justify-center bg-neutral-50 dark:bg-neutral-950">
+    <Loader2 className="animate-spin text-brand-500" size={32} />
+  </div>
+);
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -35,18 +44,41 @@ export default function App() {
             className="overflow-x-hidden"
         >
           <Menu />
+          
+          {/* Hero is loaded immediately as it's above the fold */}
           <Hero />
-          <Gallery />
-          <Services />
           
-          {/* Reordered Sections */}
-          <About />
-          <Timeline />
-          <Team />
+          <Suspense fallback={<SectionLoader />}>
+            <Gallery />
+          </Suspense>
           
-          <StatsChart />
-          <FAQ />
-          <ContactSection />
+          <Suspense fallback={<SectionLoader />}>
+            <Services />
+          </Suspense>
+          
+          <Suspense fallback={<SectionLoader />}>
+            <About />
+          </Suspense>
+          
+          <Suspense fallback={<SectionLoader />}>
+            <Timeline />
+          </Suspense>
+          
+          <Suspense fallback={<SectionLoader />}>
+            <Team />
+          </Suspense>
+          
+          <Suspense fallback={<SectionLoader />}>
+            <StatsChart />
+          </Suspense>
+          
+          <Suspense fallback={<SectionLoader />}>
+            <FAQ />
+          </Suspense>
+          
+          <Suspense fallback={<SectionLoader />}>
+            <ContactSection />
+          </Suspense>
           
           {/* Footer */}
           <footer className="bg-white dark:bg-black border-t border-neutral-200 dark:border-neutral-900 py-12 px-6 font-['Host_Grotesk']">
@@ -80,7 +112,6 @@ export default function App() {
              </div>
           </footer>
           
-          {/* Cookie Consent Banner */}
           <CookieConsent />
           
         </motion.main>
