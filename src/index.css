@@ -1,0 +1,54 @@
+
+@import "tailwindcss";
+
+@theme {
+  /* Font Setup */
+  --font-sans: "Host Grotesk", sans-serif;
+  --font-mono: "Titillium Web", monospace;
+
+  /* Brand Colors */
+  --color-brand-50: #fff9e6;
+  --color-brand-100: #ffefbf;
+  --color-brand-200: #ffe080;
+  --color-brand-300: #ffcf40;
+  --color-brand-400: #FDE047; /* Gold Light */
+  --color-brand-500: #D4AF37; /* Gold Standard (Main) */
+  --color-brand-600: #B59218; /* Gold Dark */
+  --color-brand-700: #856B12;
+  --color-brand-800: #5C4A0C;
+  --color-brand-900: #3D3108;
+
+  /* Neutral Colors */
+  --color-neutral-900: #171717;
+  --color-neutral-950: #0a0a0a;
+}
+
+/* Explicitly enable class-based dark mode in v4 if detection fails */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Global Styles */
+body {
+  background-color: var(--color-neutral-950);
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
