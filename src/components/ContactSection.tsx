@@ -3,7 +3,7 @@ import React from 'react';
 import { Send, MapPin, Phone, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const FloatingInput = ({ label, type = "text", placeholder }: { label: string, type?: string, placeholder: string }) => {
+const FloatingInput = ({ label, type = "text" }: { label: string, type?: string, placeholder: string }) => {
     return (
         <div className="relative group z-0 w-full mb-6">
             <input 
