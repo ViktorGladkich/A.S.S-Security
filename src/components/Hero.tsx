@@ -372,9 +372,6 @@ export const Hero: React.FC = () => {
                     transition={{ delay: 0.8, duration: 0.6 }}
                     className="relative pl-8 border-l-4 border-brand-500 max-w-xl"
                 >
-                    <p className="text-neutral-900 dark:text-white text-base md:text-lg font-medium leading-relaxed">
-                        Verlassen Sie sich nicht auf Glück. Vertrauen Sie auf zertifizierte Sicherheitsexperten, die im Hintergrund agieren, damit Sie im Vordergrund glänzen können.
-                    </p>
                 </motion.div>
 
                 {/* Main Button */}
